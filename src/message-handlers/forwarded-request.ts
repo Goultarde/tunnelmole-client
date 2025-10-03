@@ -15,7 +15,7 @@ export default async function forwardedRequest(forwardedRequestMessage: Forwarde
 
     // @todo: Once GET is working, add support for all HTTP methods
     const requestOptions : http.RequestOptions = {
-        hostname: 'localhost',
+        hostname: '127.0.0.1', // Use explicit IPv4 address to avoid IPv6 resolution issues
         method,
         port,
         path: url,
