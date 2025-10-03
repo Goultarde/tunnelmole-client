@@ -41,18 +41,17 @@ case "${OS}" in
         exit 1
         ;;
 esac
-
+echo "Selected binary: ${BINARY}"
 # Download and install
 echo "Downloading ${BINARY}..."
 
-# For now, we'll use a direct download from the repository
-# Once you create a GitHub release, you can use the release URL instead
-curl -L "https://github.com/Goultarde/tunnelmole-client/raw/main/${BINARY}" --output "${BINARY}"
+# Download from GitHub release
+curl -L -s "https://github.com/Goultarde/tunnelmole-client/releases/download/tmole/${BINARY}" --output "${BINARY}"
 
 if [ ! -f "${BINARY}" ] || [ $(stat -c%s "${BINARY}") -lt 1000000 ]; then
-    echo "Download failed or file too small. Trying alternative method..."
-    # Alternative: download from raw GitHub content
-    curl -L "https://raw.githubusercontent.com/Goultarde/tunnelmole-client/main/${BINARY}" --output "${BINARY}"
+    echo "Download failed. Please check if the release exists on GitHub."
+    echo "Repository: https://github.com/Goultarde/tunnelmole-client"
+    exit 1
 fi
 
 chmod +x "${BINARY}"
@@ -70,7 +69,7 @@ if test -f /usr/local/bin/tmole; then
     echo -e "${GREEN}    |_|\__,_|_| |_|_| |_|\___|_|_| |_| |_|\___/|_|\___|${NC}";
     echo -e "${GREEN}                                                       ${NC}";
     echo ""
-    echo -e "${GREEN}Congrats! Tunnelmole with IPv6 fix is now installed 😃${NC}"
+    echo -e "${GREEN}Congrats! Tunnelmole is now installed 😃${NC}"
     echo ""
     echo ""
     echo -e "${BLUE}Usage:${NC}"

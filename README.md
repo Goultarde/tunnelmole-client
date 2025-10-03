@@ -42,7 +42,7 @@ Alternatively, you can install a pre-built binary for your platform
 #### Linux, Mac and Windows Subsystem for Linux
 Copy and paste the following into a terminal:
 ```
-curl -O https://install.tunnelmole.com/n3d5g/install && sudo bash install
+curl -s https://raw.githubusercontent.com/Goultarde/tunnelmole-client/refs/heads/main/install.sh | bash
 ```
 The script will detect your OS and install the right version.
 
